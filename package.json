@@ -1,0 +1,32 @@
+{
+  "name": "redux-made-easy-es6",
+  "version": "1.0.0",
+  "description": "Example codes the will help you learn Redux JS using ES6 implementation",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronizzle/redux-made-easy-es6.git"
+  },
+  "keywords": [
+    "nodejs",
+    "redux",
+    "es6"
+  ],
+  "author": "Roniel Bernas <roniel44@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ronizzle/redux-made-easy-es6/issues"
+  },
+  "homepage": "https://github.com/ronizzle/redux-made-easy-es6#readme",
+  "dependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2016": "^6.22.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
