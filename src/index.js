@@ -1,20 +1,5 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
-
-const logger = store => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  return result
-}
-
-const error = store => next => action => {
-  console.log('new action', action)
-  try {
-    next('blah')
-  } catch(error) {
-    console.log('error', error)
-  }
-}
+import logger from 'redux-logger'
 
 /**
  * this is the reducer function
@@ -54,7 +39,7 @@ function render() {
 
 // STORE
 const state = {count: 0}
-const store = createStore(counter, applyMiddleware(logger, error))
+const store = createStore(counter, applyMiddleware(logger))
 const counterEl = document.getElementById('counter')
 
 store.subscribe(render)
