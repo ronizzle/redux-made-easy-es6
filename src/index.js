@@ -1,4 +1,21 @@
-import { createStore, combineReducers} from 'redux'
+import { createStore, combineReducers, applyMiddleware} from 'redux'
+
+const logger = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+}
+
+const error = store => next => action => {
+  console.log('new action', action)
+  try {
+    next('blah')
+  } catch(error) {
+    console.log('error', error)
+  }
+}
+
 /**
  * this is the reducer function
  */
@@ -36,9 +53,9 @@ function render() {
 }
 
 // STORE
-const state = {count: 0},
-    store = createStore(counter),
-    counterEl = document.getElementById('counter')
+const state = {count: 0}
+const store = createStore(counter, applyMiddleware(logger, error))
+const counterEl = document.getElementById('counter')
 
 store.subscribe(render)
 
