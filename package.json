@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ronizzle/redux-made-easy-es6#readme",
   "dependencies": {
+    "axios": "^0.16.0",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2016": "^6.22.0",

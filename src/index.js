@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+import axios from 'axios'
 
 /**
  * this is the reducer function
@@ -49,6 +50,11 @@ document.getElementById('add').addEventListener('click',() => {
   store.dispatch(dispatch => {
     dispatch({type: 'ADD'})
     dispatch({type: 'ADD'})
+      axios.get('https://randomuser.me/api/')
+        .then(response => {
+          console.log(response)
+          dispatch({type: 'ADD'})
+        })
   })
 })
 
