@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
 /**
  * this is the reducer function
@@ -39,13 +40,16 @@ function render() {
 
 // STORE
 const state = {count: 0}
-const store = createStore(counter, applyMiddleware(logger))
+const store = createStore(counter, applyMiddleware(logger, thunk))
 const counterEl = document.getElementById('counter')
 
 store.subscribe(render)
 
 document.getElementById('add').addEventListener('click',() => {
-  store.dispatch({type: 'ADD'})
+  store.dispatch(dispatch => {
+    dispatch({type: 'ADD'})
+    dispatch({type: 'ADD'})
+  })
 })
 
 
@@ -55,8 +59,7 @@ document.getElementById('minus').addEventListener('click',() => {
 
 
 document.getElementById('reset').addEventListener('click', () => {
-
-          store.dispatch({type: 'RESET'})
+  store.dispatch({type: 'RESET'})
 })
 
 render()
