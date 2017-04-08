@@ -1,13 +1,19 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+
+//Stages of a promise:
+//pending
+//fulfilled - or completed
+//rejected -error
+import promise from 'redux-promise-middleware'
 import axios from 'axios'
 
 /**
  * this is the reducer function
  */
 function counter(state={count:0}, action) {
-
+    console.log(action.someValue)
     if(typeof state === 'undefined') {
         return { count: 0 }
     }
@@ -43,6 +49,7 @@ function render() {
 const state = {count: 0}
 const store = createStore(counter, applyMiddleware(logger, thunk))
 const counterEl = document.getElementById('counter')
+const some_url = 'https://randomuser.me/api/'
 
 store.subscribe(render)
 
@@ -50,7 +57,7 @@ document.getElementById('add').addEventListener('click',() => {
   store.dispatch(dispatch => {
     dispatch({type: 'ADD'})
     dispatch({type: 'ADD'})
-      axios.get('https://randomuser.me/api/')
+      axios.get(some_url)
         .then(response => {
           console.log(response)
           dispatch({type: 'ADD'})
@@ -60,7 +67,7 @@ document.getElementById('add').addEventListener('click',() => {
 
 
 document.getElementById('minus').addEventListener('click',() => {
-  store.dispatch({type: 'MINUS'})
+  store.dispatch({type: 'MINUS', someValue: axios.get(some_url)})
 })
 
 
